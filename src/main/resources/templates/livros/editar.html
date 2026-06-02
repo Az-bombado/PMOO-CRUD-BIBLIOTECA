@@ -1,10 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Livro</title>
+
+    <link rel="stylesheet" href="/css/livros/editar.css">
 </head>
+
 <body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>Editar Livro</h1>
+
+        <form action="/livros/atualizar"
+              method="post">
+
+            <!-- ID OCULTO -->
+
+            <input type="hidden"
+                   name="id"
+                   th:value="${livro.id}">
+
+            <!-- NOME -->
+
+            <div class="input-group">
+
+                <label>Nome do Livro</label>
+
+                <input type="text"
+                       name="nome"
+                       th:value="${livro.nome}"
+                       required>
+
+            </div>
+
+            <!-- ISBN -->
+
+            <div class="input-group">
+
+                <label>ISBN</label>
+
+                <input type="text"
+                       name="isbn"
+                       th:value="${livro.isbn}"
+                       required>
+
+            </div>
+
+            <!-- AUTORES -->
+
+            <div class="input-group">
+
+                <label>Autor(es)</label>
+
+                <input type="text"
+                       name="autores"
+                       th:value="${livro.autores}"
+                       required>
+
+            </div>
+
+            <!-- LANÇAMENTO -->
+
+            <div class="input-group">
+
+                <label>Data de Lançamento</label>
+
+                <input type="date"
+                       name="lancamento"
+                       th:value="${livro.lancamento}"
+                       required>
+
+            </div>
+
+            <div class="botoes">
+
+                <button type="submit"
+                        class="salvar">
+                    Salvar Alterações
+                </button>
+
+                <a href="/livros"
+                   class="voltar">
+                    Cancelar
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
 
 </body>
 </html>

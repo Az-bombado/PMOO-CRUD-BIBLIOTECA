@@ -1,45 +1,284 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>Biblioteca</title>
 
-    <link rel="stylesheet" href="/css/livros/livros.css">
+    <link rel="stylesheet"
+          href="/css/livros/livros.css">
+
 </head>
+
 <body>
 
 <div class="container">
 
-    <h1>Livros Cadastrados</h1>
+    <!-- HEADER -->
 
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>ISBN</th>
-            <th>Autores</th>
-            <th>Lançamento</th>
-        </tr>
-        </thead>
+    <header>
 
-        <tbody>
+        <div class="header-content">
 
-        <tr th:each="livro : ${livros}">
-            <td th:text="${livro.id}"></td>
-            <td th:text="${livro.nome}"></td>
-            <td th:text="${livro.isbn}"></td>
-            <td th:text="${livro.autores}"></td>
-            <td th:text="${livro.lancamento}"></td>
-        </tr>
+            <h1>Sistema Biblioteca</h1>
 
-        </tbody>
-    </table>
+            <div class="header-buttons">
+
+                <a href="/home">
+                    <button type="button"
+                            class="voltar-home">
+                        🏠 Home
+                    </button>
+                </a>
+
+                <button type="button"
+                        class="novo-livro"
+                        onclick="abrirModal()">
+
+                    + Novo Livro
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- PESQUISA -->
+
+        <div class="pesquisa-container">
+
+            <input type="text"
+                   id="pesquisa"
+                   placeholder="Pesquisar livros...">
+
+        </div>
+
+    </header>
+
+    <!-- TABELA -->
+
+    <section class="tabela-container">
+
+        <table>
+
+            <thead>
+
+            <tr>
+
+                <th>ID</th>
+
+                <th>Nome</th>
+
+                <th>ISBN</th>
+
+                <th>Autores</th>
+
+                <th>Lançamento</th>
+
+                <th>Ações</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody id="tabelaLivros">
+
+            <tr th:each="livro : ${livros}">
+
+                <!-- ID -->
+
+                <td th:text="${livro.id}">
+                    1
+                </td>
+
+                <!-- NOME -->
+
+                <td th:text="${livro.nome}">
+                    Nome Livro
+                </td>
+
+                <!-- ISBN -->
+
+                <td th:text="${livro.isbn}">
+                    000000
+                </td>
+
+                <!-- AUTORES -->
+
+                <td th:text="${livro.autores}">
+                    Autor
+                </td>
+
+                <!-- LANCAMENTO -->
+
+                <td th:text="${livro.lancamento}">
+                    2000-01-01
+                </td>
+
+                <!-- ACOES -->
+
+                <td class="acoes">
+
+                    <!-- EDITAR -->
+
+                    <a th:href="@{/livros/editar/{id}(id=${livro.id})}">
+
+                        <button type="button"
+                                class="editar">
+
+                            Editar
+
+                        </button>
+
+                    </a>
+
+                    <!-- EXCLUIR -->
+
+                    <a th:href="@{/livros/deletar/{id}(id=${livro.id})}">
+
+                        <button type="button"
+                                class="excluir">
+
+                            Excluir
+
+                        </button>
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+
+    </section>
 
 </div>
 
-<script src="/js/script.js"></script>
+<!-- MODAL -->
+
+<div class="modal"
+     id="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>
+                Cadastro de Livro
+            </h2>
+
+            <button type="button"
+                    class="fechar-modal"
+                    onclick="fecharModal()">
+
+                X
+
+            </button>
+
+        </div>
+
+        <!-- FORM -->
+
+        <form action="/livros/salvar"
+              method="post"
+              class="formulario">
+
+            <!-- NOME -->
+
+            <div class="input-group">
+
+                <label>
+                    Nome do Livro
+                </label>
+
+                <input type="text"
+                       name="nome"
+                       placeholder="Digite o nome do livro"
+                       required>
+
+            </div>
+
+            <!-- ISBN -->
+
+            <div class="input-group">
+
+                <label>
+                    ISBN
+                </label>
+
+                <input type="text"
+                       name="isbn"
+                       placeholder="Digite o ISBN"
+                       required>
+
+            </div>
+
+            <!-- AUTORES -->
+
+            <div class="input-group">
+
+                <label>
+                    Autor(es)
+                </label>
+
+                <input type="text"
+                       name="autores"
+                       placeholder="Digite os autores"
+                       required>
+
+            </div>
+
+            <!-- LANCAMENTO -->
+
+            <div class="input-group">
+
+                <label>
+                    Data de Lançamento
+                </label>
+
+                <input type="date"
+                       name="lancamento"
+                       required>
+
+            </div>
+
+            <!-- BOTOES -->
+
+            <div class="modal-buttons">
+
+                <button type="submit"
+                        class="salvar">
+
+                    Salvar Livro
+
+                </button>
+
+                <button type="button"
+                        class="cancelar"
+                        onclick="fecharModal()">
+
+                    Cancelar
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="/js/livros/livros.js"></script>
 
 </body>
 </html>
