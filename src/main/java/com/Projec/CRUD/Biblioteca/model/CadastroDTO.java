@@ -1,32 +1,13 @@
 package com.Projec.CRUD.Biblioteca.model;
 
-import jakarta.persistence.*;
-
-@Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Usuario {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class CadastroDTO {
 
     private String nome;
-
     private String email;
-
     private String senha;
-
     private String permissao;
 
-    public String getPermissao() {
-        return permissao;
-    }
-
-    public void setPermissao(String permissao) {
-        this.permissao = permissao;
-    }
-
-    public Usuario() {
+    public CadastroDTO() {
     }
 
     public String getNome() {
@@ -52,6 +33,11 @@ public abstract class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+    public String getPermissao() {
+        return permissao;
+    }
 
+    public void setPermissao(String permissao) {
+        this.permissao = permissao;
+    }
 }
-
