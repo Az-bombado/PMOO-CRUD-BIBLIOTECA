@@ -1,0 +1,50 @@
+<div class="container">
+    <link rel="stylesheet" th:href="@{/css/livros/emprestimo.css}">
+    <!-- 📘 CARD DO LIVRO -->
+    <div class="card">
+
+        <h2>📘 Livro</h2>
+
+        <div class="book-info">
+
+            <p><strong>Título:</strong> <span th:text="${livro.nome}"></span></p>
+
+            <p><strong>Autor:</strong> <span th:text="${livro.autores}"></span></p>
+
+            <span class="tag">Disponível para empréstimo</span>
+
+        </div>
+
+    </div>
+
+    <!-- 📄 FORMULÁRIO -->
+    <div class="card">
+
+        <h2>📄 Empréstimo</h2>
+
+        <form action="/emprestimos/salvar" method="post">
+
+            <input type="hidden"
+                   name="livroId"
+                   th:value="${livro.id}">
+
+            <select name="usuarioId" required>
+
+                <option value="">Selecione um usuário</option>
+
+                <option th:each="usuario : ${usuarios}"
+                        th:value="${usuario.id}"
+                        th:text="${usuario.nome}">
+                </option>
+
+            </select>
+
+            <button type="submit">
+                Confirmar Empréstimo
+            </button>
+
+        </form>
+
+    </div>
+
+</div>

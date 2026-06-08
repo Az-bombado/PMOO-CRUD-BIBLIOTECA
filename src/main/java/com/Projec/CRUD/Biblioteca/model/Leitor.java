@@ -3,11 +3,10 @@ package com.Projec.CRUD.Biblioteca.model;
 import jakarta.persistence.Entity;
 
 @Entity
-public class Bibliotecario extends Usuario {
+public class Leitor extends Usuario {
 
     @Override
     public String getPermissao() {
-        return "BIBLIOTECARIO";
+        return "LEITOR";
     }
-
 }

@@ -18,6 +18,11 @@ public abstract class Usuario {
 
     private String permissao;
 
+    @Override
+    public String toString() {
+        return nome;
+    }
+
     public String getPermissao() {
         return permissao;
     }
@@ -27,6 +32,14 @@ public abstract class Usuario {
     }
 
     public Usuario() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {

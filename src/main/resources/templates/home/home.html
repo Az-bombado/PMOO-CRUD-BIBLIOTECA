@@ -17,7 +17,6 @@
 
     <nav class="menu">
 
-        <a href="/home">Home</a>
         <a href="/livros">Livros</a>
         <a href="/usuarios">Usuários</a>
         <a href="/logout" class="logout">
@@ -68,17 +67,17 @@
                 <div class="stats">
 
                     <div>
-                        <span>120</span>
+                        <span th:text="${totalLivros}">0</span>
                         <p>Livros</p>
                     </div>
 
                     <div>
-                        <span>48</span>
+                        <span th:text="${totalUsuarios}">0</span>
                         <p>Usuários</p>
                     </div>
 
                     <div>
-                        <span>17</span>
+                        <span th:text="${totalEmprestimos}">0</span>
                         <p>Empréstimos</p>
                     </div>
 

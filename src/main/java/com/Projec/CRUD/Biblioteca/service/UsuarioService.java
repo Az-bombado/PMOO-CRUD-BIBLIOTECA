@@ -1,9 +1,6 @@
 package com.Projec.CRUD.Biblioteca.service;
 
-import com.Projec.CRUD.Biblioteca.model.Administrador;
-import com.Projec.CRUD.Biblioteca.model.Bibliotecario;
-import com.Projec.CRUD.Biblioteca.model.CadastroDTO;
-import com.Projec.CRUD.Biblioteca.model.Usuario;
+import com.Projec.CRUD.Biblioteca.model.*;
 import com.Projec.CRUD.Biblioteca.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,14 +17,16 @@ public class UsuarioService {
 
         if(dto.getPermissao().equals("ADM")){
             usuario = new Administrador();
-        } else {
+        } if(dto.getPermissao().equals("BIBLIOTECARIO")){
             usuario = new Bibliotecario();
+        }else{
+            usuario = new Leitor();
         }
 
         usuario.setNome(dto.getNome());
         usuario.setEmail(dto.getEmail());
         usuario.setSenha(dto.getSenha());
-
+        usuario.setPermissao(dto.getPermissao());
         repository.save(usuario);
     }
 

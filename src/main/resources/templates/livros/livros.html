@@ -36,7 +36,6 @@
                         🏠 Home
                     </button>
                 </a>
-
                 <button type="button"
                         class="novo-livro"
                         onclick="abrirModal()">
@@ -150,6 +149,13 @@
                         </button>
 
                     </a>
+
+                    <a th:href="@{/emprestimos/novo/{id}(id=${livro.id})}">
+                        <button type="button" class="emprestar">
+                            Emprestar
+                        </button>
+                    </a>
+
 
                 </td>
 
